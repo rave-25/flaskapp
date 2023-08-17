@@ -18,8 +18,8 @@
         <h1 class="title">The Puppy Shop</h1>
         <nav>
           <ul>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="{{url_for('register')}}">Register</a></li>
+            <li><a href="{{url_for('login')}}">Login</a></li>
             <li><a href="{{url_for('add')}}">Feedback</a></li>
           </ul>
         </nav>
@@ -28,7 +28,22 @@
 
     <div class="main-container">
       <div class="main wrapper clearfix">
-        {% block content %} {% endblock %} {% block sidebar%}
+        
+        <article class="flashes">
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+            {%for message in messages%}
+              <li>{{message}}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+        </article>
+
+        {% block content %}
+        {% endblock %}
+        {% block sidebar%}
         <aside>
           <h3>Working Hours</h3>
           <p>Monday-Saturday: 10 AM - 7 PM</p>

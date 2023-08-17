@@ -6,13 +6,13 @@ Feedback Form
 {% endblock %}
 {% block content %}
 <section>
-    <form action="" method="post">
+  <form action="/add" method="POST">
       <p>Please input your Feedback: <input type="text" name="url" /></p>
-    </form>
-    <p>
-      <button type="submit">Submit</button>
-    </p>
-  </section>
+      <p>
+          <button type="submit">Submit</button>
+      </p>
+  </form>
+</section>
 {% endblock %}
 
 {% block sidebar %}
