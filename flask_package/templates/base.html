@@ -15,12 +15,16 @@
   <body>
     <div class="header-container">
       <header class="wrapper clearfix">
-        <h1 class="title">The Puppy Shop</h1>
+        <a href="{{url_for('home')}}"><h1 class="title">The Puppy Shop</h1></a>
         <nav>
           <ul>
+            {% if current_user.is_authenticated  %}
+            <li><a href="{{url_for('add')}}">Feedback</a></li>
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
+            {% else %}
             <li><a href="{{url_for('register')}}">Register</a></li>
             <li><a href="{{url_for('login')}}">Login</a></li>
-            <li><a href="{{url_for('add')}}">Feedback</a></li>
+            {% endif %}
           </ul>
         </nav>
       </header>
@@ -48,6 +52,16 @@
           <h3>Working Hours</h3>
           <p>Monday-Saturday: 10 AM - 7 PM</p>
           <p>Sunday: 2 PM - 7 PM</p>
+          
+          {% if new_feedback  %}
+          <ul>
+          {% for bm in new_feedback %}
+              <li>{{bm.url}}</li>
+          {% endfor %}
+          </ul>
+          {% else %}
+          No feedback yet.
+          {% endif %}
         </aside>
         {% endblock %}
       </div>
